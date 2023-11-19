@@ -2,6 +2,9 @@
 
 # Import and initialize the pygame library
 import pygame
+
+from calc import generate_newton_fractal
+
 pygame.init()
 
 colours = (
@@ -12,8 +15,16 @@ colours = (
     (212, 175, 205),
 )
 
+n = 500
+
+# Generate the fractal matrix:
+print("Generating fractal...")
+fractal = generate_newton_fractal(n=n)
+
+print("Fractal generated.")
+
 # Set up the drawing window
-screen = pygame.display.set_mode([500, 500])
+screen = pygame.display.set_mode([n, n])
 
 # Run until the user asks to quit
 running = True
@@ -29,7 +40,7 @@ while running:
 
     for x in range(500):
         for y in range(500):
-            color = colours[(round(x / 100) + round(y / 100)) % 5]
+            color = colours[round(fractal[x, y]) % len(colours)]
             screen.set_at((x, y), color)
 
     pygame.display.flip()
