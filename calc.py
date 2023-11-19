@@ -27,8 +27,8 @@ def generate_newton_fractal(n=200, domain=(-1, 1, -1, 1)):
 
     """
 
-    f = lambda z: z**5 - 1
-    fprime = lambda z: 5*z**4
+    f = lambda z: z**2
+    fprime = lambda z: 2*z
 
     roots = []
     m = numpy.zeros((n, n))

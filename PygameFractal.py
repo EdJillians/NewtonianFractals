@@ -38,8 +38,8 @@ while running:
     # Fill the background with white
     screen.fill((255, 255, 255))
 
-    for x in range(500):
-        for y in range(500):
+    for x in range(n):
+        for y in range(n):
             color = colours[round(fractal[x, y]) % len(colours)]
             screen.set_at((x, y), color)
 
