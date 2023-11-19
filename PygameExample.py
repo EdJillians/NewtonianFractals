@@ -4,6 +4,14 @@
 import pygame
 pygame.init()
 
+colours = (
+    (46, 97, 113),
+    (85, 111, 122),
+    (121, 128, 134),
+    (183, 159, 173),
+    (212, 175, 205),
+)
+
 # Set up the drawing window
 screen = pygame.display.set_mode([500, 500])
 
@@ -19,10 +27,11 @@ while running:
     # Fill the background with white
     screen.fill((255, 255, 255))
 
-    # Draw a solid blue circle in the center
-    pygame.draw.circle(screen, (0, 0, 255), (250, 250), 75)
+    for x in range(500):
+        for y in range(500):
+            color = colours[(round(x / 100) + round(y / 100)) % 5]
+            screen.set_at((x, y), color)
 
-    # Flip the display
     pygame.display.flip()
 
 # Done! Time to quit.
