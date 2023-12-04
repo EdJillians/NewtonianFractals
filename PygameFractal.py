@@ -15,6 +15,18 @@ colours = (
     (212, 175, 205),
 )
 
+colors = (
+    (0, 0, 0),        # Black
+    (255, 255, 255),  # White
+    (255, 0, 0),      # Red
+    (0, 255, 0),      # Green
+    (0, 0, 255),      # Blue
+    (255, 255, 0),    # Yellow
+    (255, 0, 255),    # Purple
+    (0, 255, 255),    # Cyan
+    (255, 165, 0),    # Orange
+)
+
 n = 500
 
 # Generate the fractal matrix:
