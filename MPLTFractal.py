@@ -17,7 +17,10 @@ def newton(z0, f, fprime, MAX_IT=1000):
 
     z = z0
     for i in range(MAX_IT):
-        dz = f(z)/fprime(z)
+        deriv = fprime(z)
+        if deriv == 0:
+            return False
+        dz = f(z) / deriv
         if abs(dz) < TOL:
             return z
         z -= dz

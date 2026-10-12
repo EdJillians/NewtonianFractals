@@ -7,55 +7,58 @@ from calc import generate_newton_fractal
 
 pygame.init()
 
+# Alternative palette option:
+# colours = (
+#     (46, 97, 113),
+#     (85, 111, 122),
+#     (121, 128, 134),
+#     (183, 159, 173),
+#     (212, 175, 205),
+# )
+
 colours = (
-    (46, 97, 113),
-    (85, 111, 122),
-    (121, 128, 134),
-    (183, 159, 173),
-    (212, 175, 205),
+    (0, 135, 108),
+    (87, 161, 139),
+    (140, 188, 172),
+    (190, 214, 206),
+    (211, 211, 211),
+    (241, 198, 198),
+    (236, 156, 157),
+    (226, 112, 118),
+    (212, 61, 81)
 )
 
-colors = (
-    (0, 0, 0),        # Black
-    (255, 255, 255),  # White
-    (255, 0, 0),      # Red
-    (0, 255, 0),      # Green
-    (0, 0, 255),      # Blue
-    (255, 255, 0),    # Yellow
-    (255, 0, 255),    # Purple
-    (0, 255, 255),    # Cyan
-    (255, 165, 0),    # Orange
-)
-
-n = 500
+n = 600
 
 # Generate the fractal matrix:
 print("Generating fractal...")
 fractal = generate_newton_fractal(n=n)
-
 print("Fractal generated.")
 
 # Set up the drawing window
 screen = pygame.display.set_mode([n, n])
+pygame.display.set_caption("Newton Fractal")
 
-# Run until the user asks to quit
+# Draw the fractal once onto the screen
+screen.fill((255, 255, 255))
+for x in range(n):
+    for y in range(n):
+        color = colours[round(fractal[x, y]) % len(colours)]
+        screen.set_at((x, y), color)
+
+pygame.display.flip()
+pygame.image.save(screen, "fractal.png")
+print("Saved image to fractal.png")
+
+# Run event loop until the user asks to quit
+clock = pygame.time.Clock()
 running = True
 while running:
-
-    # Did the user click the window close button?
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+    clock.tick(30)
 
-    # Fill the background with white
-    screen.fill((255, 255, 255))
-
-    for x in range(n):
-        for y in range(n):
-            color = colours[round(fractal[x, y]) % len(colours)]
-            screen.set_at((x, y), color)
-
-    pygame.display.flip()
-
-# Done! Time to quit.
 pygame.quit()
+
+

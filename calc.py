@@ -12,7 +12,10 @@ def newton(z0, f, fprime, MAX_IT=1000):
 
     z = z0
     for i in range(MAX_IT):
-        dz = f(z)/fprime(z)
+        deriv = fprime(z)
+        if deriv == 0:
+            return False
+        dz = f(z) / deriv
         if abs(dz) < TOL:
             return z
         z -= dz
@@ -27,8 +30,8 @@ def generate_newton_fractal(n=200, domain=(-1, 1, -1, 1)):
 
     """
 
-    f = lambda z: z**9-1
-    fprime = lambda z: 9*z**8
+    f = lambda z: z**6-1
+    fprime = lambda z: 6*z**5
 
     roots = []
     m = numpy.zeros((n, n))
